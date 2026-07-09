@@ -17,7 +17,7 @@ pipeline {
                 }
             }
         }
-       stage {
+       stage('Build docker image') {
             steps {
                  script {
                       sh 'docker build -t lavanya1518/jenkins-pipeline-file:1.0 .'
