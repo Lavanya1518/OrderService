@@ -4,6 +4,9 @@ pipeline {
     tools {
         maven "maven"
     }
+    environment {
+            PATH = "/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:${env.PATH}"
+    }
     stages {
         stage('SCM checkout') {
             steps {
@@ -29,7 +32,7 @@ pipeline {
         stage('Build docker image') {
             steps {
                  script {
-                      sh 'docker build -t lavanya1518/jenkins-pipeline-file:1.0 .'
+                        sh '/opt/homebrew/bin/docker build -t lavanya1518/jenkins-pipeline-file:1.0 .'
                    }
                 }
         }
