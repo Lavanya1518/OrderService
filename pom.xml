@@ -16,7 +16,7 @@
     <version>1.0.0</version>
     <name>order-service</name>
     <description>Spring Boot order service with subtotal and discount logic</description>
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
 
     <properties>
         <java.version>17</java.version>
