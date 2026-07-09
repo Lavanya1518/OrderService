@@ -1,4 +1,3 @@
-/*
 pipeline {
     agent any
 
@@ -8,8 +7,7 @@ pipeline {
     stages {
         stage('SCM checkout') {
             steps {
-                checkout scmGit(branches: [[name: '*//*
-main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/Lavanya1518/OrderService.git']])
+                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/Lavanya1518/OrderService.git']])
             }
         }
         stage('Build process') {
@@ -48,4 +46,4 @@ main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/Lavanya15
         }
     }
 
-} */
+}
