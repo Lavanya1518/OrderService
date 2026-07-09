@@ -1,3 +1,4 @@
+/*
 pipeline {
     agent any
 
@@ -7,7 +8,8 @@ pipeline {
     stages {
         stage('SCM checkout') {
             steps {
-                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/Lavanya1518/OrderService.git']])
+                checkout scmGit(branches: [[name: '*//*
+main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/Lavanya1518/OrderService.git']])
             }
         }
         stage('Build process') {
@@ -17,10 +19,12 @@ pipeline {
                 }
             }
         }
-        stage('Deploy to Container') {
+       stage {
             steps {
-                deploy adapters: [tomcat9(alternativeDeploymentContext: '', credentialsId: 'tomcat-pwd', path: '', url: 'http://localhost:9090/')], contextPath: 'jenkins-cicd-pipeline', war: '**/*.war'
-            }
+                 script {
+                      sh 'docker build -t lavanya1518/jenkins-pipeline-file:1.0 .'
+                   }
+                }
         }
     }
     post {
@@ -44,4 +48,4 @@ pipeline {
         }
     }
 
-}
+} */
