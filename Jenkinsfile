@@ -32,7 +32,7 @@ pipeline {
         stage('Build docker image') {
             steps {
                  script {
-                        sh '/opt/homebrew/bin/docker build -t lavanya1518/jenkins-pipeline-file:1.0 .'
+                        sh 'docker build -t lavanya1518/jenkins-pipeline-file:1.0 .'
                    }
                 }
         }
