@@ -41,7 +41,7 @@ pipeline {
                          script {
                              withCredentials([string(credentialsId: 'dockerhub-creds', variable: 'dockerhub-creds')]) {
                                 sh 'docker login -u lavanya1518 -p $dockerhub-creds'
-                                sh 'dicker tag lavanya1518/spring-cid:1.0 lavanya1518/jenkins-pipeline-file:1.0'
+                               // sh 'dicker tag spring-cid:1.0 lavanya1518/jenkins-pipeline-file:1.0'
                                 sh 'docker push lavanya1518/jenkins-pipeline-file:1.0'
                               }
                            }
