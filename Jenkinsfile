@@ -38,12 +38,17 @@ pipeline {
         }
         stage('Deploy image to dockerhub') {
                     steps {
-                        withCredentials([string(credentialsId: 'dockerhub-creds', variable: 'docker-cred')]) {
-                              sh 'echo $docker-cred | docker login -u lavanya1518 --password-stdin'
-                              sh 'docker login -u lavanya1518 -p ${docker-cred}'
-                              sh 'docker push lavanya1518/spring-cicd:1.0'
-                            }
-                        }
+                        withCredentials([usernamePassword(
+                            credentialsId: 'dockerhub-creds',
+                            usernameVariable: 'DOCKER_USERNAME',
+                            passwordVariable: 'DOCKER_PASSWORD'
+                        )]) {
+                            sh '''
+                                echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+                                docker build -t lavanya1518/jenkins-pipeline-file:1.0 .
+                                docker push lavanya1518/jenkins-pipeline-file:1.0
+                            '''
+                        }                        }
                 }
     }
     post {
