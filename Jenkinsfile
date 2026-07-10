@@ -32,7 +32,7 @@ pipeline {
         stage('Build docker image') {
             steps {
                  script {
-                        sh 'docker build -t lavanya1518/spring-cid:1.0 .'
+                        sh 'docker build -t lavanya1518/spring-cicd:1.0 .'
                    }
                 }
         }
@@ -40,8 +40,8 @@ pipeline {
                     steps {
                         withCredentials([string(credentialsId: 'dockerhub-creds', variable: 'docker-cred')]) {
                               sh 'echo $docker-cred | docker login -u lavanya1518 --password-stdin'
-                              sh 'docker login -u lavanya1518 -p $docker-cred'
-                              sh 'docker push lavanya1518/spring-cid:1.0'
+                              sh 'docker login -u lavanya1518 -p ${docker-cred}'
+                              sh 'docker push lavanya1518/spring-cicd:1.0'
                             }
                         }
                 }
