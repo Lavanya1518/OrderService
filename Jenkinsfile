@@ -32,10 +32,21 @@ pipeline {
         stage('Build docker image') {
             steps {
                  script {
-                        sh 'docker build -t lavanya1518/jenkins-pipeline-file:1.0 .'
+                        sh 'docker build -t lavanya1518/spring-cid:1.0 .'
                    }
                 }
         }
+        stage('Deploy image to dockerhub') {
+                    steps {
+                         script {
+                             withCredentials([string(credentialsId: 'docker-cred', variable: 'docker-cred')]) {
+                                sh 'docker login -u lavanya1518 -p $docker-cred'
+                                sh 'dicker tag lavanya1518/spring-cid:1.0 lavanya1518/jenkins-pipeline-file:1.0'
+                                sh 'docker push lavanya1518/jenkins-pipeline-file:1.0'
+                              }
+                           }
+                        }
+                }
     }
     post {
         always {
